@@ -7,6 +7,8 @@ using namespace std;
 
 string messedUp;
 int selection;
+int temp1;													//for holding row number for selection and changing
+int temp2;													//for holding column number for selection and changing
 string buf;													//holds a line of data from the file
 ifstream dataFile;											//used to open the file(select a puzzle)
 
@@ -14,6 +16,18 @@ struct puzzle
 {
 	bool solution[4][4];									//the solution grid. This should only change when first created. Or if a new puzzle starts.
 	bool gridState[4][4];									//the player grid. This should hold the data for the current game. A graphical depiction should be built.
+	void setSol(int x, int y)								//for setting up the solution
+	{
+		solution[x-1][y-1] = true;
+	};
+	void setGrid(int x, int y)							//for changing values to true
+	{
+		gridState[x-1][y-1] = true;
+	};
+	void clearGrid(int x, int y)							//for changing values to false
+	{
+		gridState[x-1][y-1] = false;
+	};
 	void setup()											//sets up a clear starting grid. Needs to create a solution as well.
 	{
 		for (int i = 0; i < 4; i++)
@@ -44,6 +58,13 @@ int main()
 		cin >> messedUp;
 		return 0;
 	};											
-	dataFile.open(buf);
+	dataFile.open("samplePuzzle.txt");
+	while(dataFile.good())
+	{
+		getline(dataFile, buf);
+		temp1=atoi(buf.c_str[0]);
+		temp2=atoi(buf.c_str[1]);
+		game.setSol(temp1, temp2);
+	}
 	return 0;
 }
