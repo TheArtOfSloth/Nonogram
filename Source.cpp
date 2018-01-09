@@ -51,7 +51,6 @@ class puzzle()
 
 };
 
-
 class game()
 {
 private:
@@ -75,8 +74,6 @@ public:
 			gridStat[x-1][y-1]=true;
 	};
 };
-
-
 
 struct puzzl
 {
@@ -121,7 +118,18 @@ struct puzzl
 
 };
 
-
+bool isSolve(puzzle x, game y)
+{
+	for (int i = 0; i<4; i++)
+	{
+		for (int j = 0; j<4; j++)
+		{
+			if (x.solution[i][j] != y.gridStat[i][j])
+				return false;
+		};
+	};
+	return true;
+};
 
 int main()
 {
