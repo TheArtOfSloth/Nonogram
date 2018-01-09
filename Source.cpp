@@ -13,6 +13,36 @@ string buf;													//holds a line of data from the file
 string entries;												//holds user entries for the puzzle
 ifstream dataFile;											//used to open the file(select a puzzle)
 
+/*
+
+class puzzle()
+{
+	ifstream dataFil;
+	string buff;
+	int temp3;
+	int temp4;
+	bool solution[4][4];
+	void setSol(int x, int y)									//for setting up the solution
+	{
+		solution[x-1][y-1] = true;
+	};
+	puzzle (string w)
+	{
+			dataFil.open(w);									//open the file
+		while(dataFil.good())									//loop to read file and create solution grid
+		{
+			getline(dataFil, buff);
+			temp3=atoi(buff.c_str[0]);
+			temp4=atoi(buff.c_str[1]);
+			setSol(temp3, temp4);
+		};
+		dataFil.close();										//close the file
+	};
+
+};
+
+*/
+
 struct puzzle
 {
 	bool solution[4][4];									//the solution grid. This should only change when first created. Or if a new puzzle starts.
