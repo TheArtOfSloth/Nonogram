@@ -7,26 +7,9 @@ using namespace std;
 
 string messedUp;
 string selection;
-int temp1;									//for holding row number for selection and changing
-int temp2;									//for holding column number for selection and changing
-string buf;									//holds a line of data from the file
 string entries;									//holds user entries for the puzzle
-ifstream dataFile;								//used to open the file(select a puzzle)
+
 int menuFlag = 0;								//used to specify the user is ready or not to load a file
-
-
-bool isSolve(puzzle x, game y)
-{
-	for (int i = 0; i<4; i++)
-	{
-		for (int j = 0; j<4; j++)
-		{
-			if (x.solution[i][j] != y.gridStat[i][j])
-				return false;
-		};
-	};
-	return true;
-};
 
 int parseString(string selection){
 	if (selection.compare("Exit") || selection.compare("exit")){		//user wishes to leave
@@ -68,7 +51,6 @@ int parseExit()
 
 int main()
 {
-	puzzl gam;
 	cout << "Welcome to our nonogram project!" << endl;
 	cout << "If you would like to read the instructions on how to play a nonogram, please type Help." << endl;
 	//Tarin here, I'm starting work on our main menu that our user uses to either ask for instructions or load a puzzle
@@ -83,29 +65,9 @@ int main()
 	}
 	
 	cout << endl << "Okay! Here goes..." << endl;		//we are now ready to attempt to load files
-	
-	dataFile.open("samplePuzzle.txt");		//this line will be our junit test. Open the file
-	//dataFile.open(selection);			//we will be using this line later
-	
-	if (!dataFile.isOpen())				//file failed to open
-	{
-		cout << "no. nonono. It failed. Sorry, eh?" << endl << "press something and then enter to leave. sorry again. ";
-		cin >> messedUp;						//prompt so the user can read the above text before the program terminates
-		return 0;
-	};											
-	
-	while(dataFile.good())							//loop to read file and create solution grid
-	{
-		getline(dataFile, buf);
-		temp1=atoi(buf.c_str[0]);
-		temp2=atoi(buf.c_str[1]);
-		gam.setSol(temp1, temp2);
-	};
-	
+		
 	//if(puzzle is solved){
 		//cout << "Congratulations! You have completed the puzzle!" << endl;
 	//}
-	dataFile.close();							//close the file
-
 	return 0;
 }
