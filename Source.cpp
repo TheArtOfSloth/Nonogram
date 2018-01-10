@@ -10,6 +10,7 @@ string selection;
 string entries;									//holds user entries for the puzzle
 
 int menuFlag = 0;								//used to specify the user is ready or not to load a file
+int gameRunning = 1;
 
 int parseString(string selection){
 	if (selection.compare("Exit") || selection.compare("exit")){		//user wishes to leave
@@ -51,23 +52,30 @@ int parseExit()
 
 int main()
 {
-	cout << "Welcome to our nonogram project!" << endl;
-	cout << "If you would like to read the instructions on how to play a nonogram, please type Help." << endl;
-	//Tarin here, I'm starting work on our main menu that our user uses to either ask for instructions or load a puzzle
-	cout << "If you would like to start a puzzle, please specify the filename of the puzzle you would like to play." << endl;
-	//picking a puzzle. Only 1 exists so far.
-	cout << "At any time you may type Exit to exit." << endl;
-	//allows the user to leave
+	while(gameRunning == 1){
+		cout << "Welcome to our nonogram project!" << endl;
+		cout << "If you would like to read the instructions on how to play a nonogram, please type Help." << endl;
+		//Tarin here, I'm starting work on our main menu that our user uses to either ask for instructions or load a puzzle
+		cout << "If you would like to start a puzzle, please specify the filename of the puzzle you would like to play." << endl;
+		//picking a puzzle. Only 1 exists so far.
+		cout << "At any time you may type Exit to exit." << endl;
+		//allows the user to leave
 	
-	while (menuFlag == 0){			//we stay in this loop to check what the user's input is
-		cin >> selection;		//the user gives us a string and we parse that string for Exit, Help, or a filename
-		parseString();
-	}
+		while (menuFlag == 0){			//we stay in this loop to check what the user's input is
+			cin >> selection;		//the user gives us a string and we parse that string for Exit, Help, or a filename
+			parseString();
+		}
 	
-	cout << endl << "Okay! Here goes..." << endl;		//we are now ready to attempt to load files
+		cout << endl << "Okay! Here goes..." << endl;		//we are now ready to attempt to load files
 		
-	//if(puzzle is solved){
-		//cout << "Congratulations! You have completed the puzzle!" << endl;
-	//}
+		//if(puzzle is solved){
+			//cout << "Congratulations! You have completed the puzzle!" << endl;
+			//cout << "Would you like to try another?" << endl;
+			//here we would ask if the user wants to load another puzzle. For this submission the answer will be no
+			//since we're not loading another puzzle yet, exit the loop and program
+		gameRunning = 0;
+		//}
+		
+	}
 	return 0;
 }
