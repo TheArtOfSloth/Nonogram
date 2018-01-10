@@ -7,21 +7,22 @@ using namespace std;
 
 string messedUp;
 string selection;
-int temp1;														//for holding row number for selection and changing
-int temp2;														//for holding column number for selection and changing
-string buf;														//holds a line of data from the file
-string entries;													//holds user entries for the puzzle
-ifstream dataFile;												//used to open the file(select a puzzle)
+int temp1;									//for holding row number for selection and changing
+int temp2;									//for holding column number for selection and changing
+string buf;									//holds a line of data from the file
+string entries;									//holds user entries for the puzzle
+ifstream dataFile;								//used to open the file(select a puzzle)
+int menuFlag = 0;								//used to specify the user is ready or not to load a file
 
 
-class puzzle()
+class puzzle
 {
-	ifstream dataFil;											//for opening a file
-	string buff;												//for reading the file
-	int temp3;													//for input into setSol
-	int temp4;													//for input into setSol
-	bool solution[4][4];										//solution grid
-	void clearSol()												//for clearing the solution before setting it up
+	ifstream dataFil;							//for opening a file
+	string buff;								//for reading the file
+	int temp3;								//for input into setSol
+	int temp4;								//for input into setSol
+	bool solution[4][4];							//solution grid
+	void clearSol()								//for clearing the solution before setting it up
 	{
 		for (int i=0; i<4; i++)
 		{
@@ -31,27 +32,27 @@ class puzzle()
 			};
 		};
 	};
-	void setSol(int x, int y)									//for setting up the solution
+	void setSol(int x, int y)						//for setting up the solution
 	{
 		solution[x-1][y-1] = true;
 	};
 	puzzle(string w)
 	{
 		clearSol();
-		dataFil.open(w);										//open the file
-		while(dataFil.good())									//loop to read file and create solution grid
+		dataFil.open(w);						//open the file
+		while(dataFil.good())						//loop to read file and create solution grid
 		{
 			getline(dataFil, buff);
 			temp3=atoi(buff.c_str[0]);
 			temp4=atoi(buff.c_str[1]);
 			setSol(temp3, temp4);
 		};
-		dataFil.close();										//close the file
+		dataFil.close();						//close the file
 	};
 
 };
 
-class game()
+class game
 {
 private:
 	bool gridStat[4][4];
@@ -77,13 +78,13 @@ public:
 
 struct puzzl
 {
-	bool solution[4][4];									//the solution grid. This should only change when first created. Or if a new puzzle starts.
-	bool gridState[4][4];									//the player grid. This should hold the data for the current game. A graphical depiction should be built.
-	void setSol(int x, int y)								//for setting up the solution
+	bool solution[4][4];								//the solution grid. This should only change when first created. Or if a new puzzle starts.
+	bool gridState[4][4];								//the player grid. This should hold the data for the current game. A graphical depiction should be built.
+	void setSol(int x, int y)							//for setting up the solution
 	{
 		solution[x-1][y-1] = true;
 	};
-	void setGrid(int x, int y)								//for changing values to true
+	void setGrid(int x, int y)							//for changing values to true
 	{
 		gridState[x-1][y-1] = true;
 	};
@@ -91,12 +92,12 @@ struct puzzl
 	{
 		gridState[x-1][y-1] = false;
 	};
-	void setItUp()											//sets up a clear starting grid. Needs to create a solution as well.
+	void setItUp()									//sets up a clear starting grid. Needs to create a solution as well.
 	{
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 4; j++)
-				gridState[i][j] = false;					//the line that actually ensures that the player grid starts blank.
+				gridState[i][j] = false;				//the line that actually ensures that the player grid starts blank.
 		};
 	};
 	bool isSolved()
@@ -131,12 +132,31 @@ bool isSolve(puzzle x, game y)
 	return true;
 };
 
-int parseExit(string selection)
-{
-	if (selection.compare("Exit") || selection.compare("exit")){	//user wishes to leave
-		cout << "Goodbye!" << endl;
-		exit();
+int parseString(string selection){
+	if (selection.compare("Exit") || selection.compare("exit")){		//user wishes to leave
+		parseExit();
 	}
+	else if(selection.compare("Help") || selection.compare("help")){	//user wishes to learn how to play
+		parseHelp();
+	}
+	
+	else{									//user has specified a filename
+		menuFlag++;
+	}
+	return 0;		
+	}
+}
+
+void parseHelp()
+{
+	cout << "Extensive instructions on how to play a nonogram go here" << endl;
+	cout << "Please specify the file you wish to play." << endl;
+}
+
+int parseExit()
+{
+	cout << "Goodbye!" << endl;
+	exit();
 	return 0;
 }
 
@@ -151,21 +171,13 @@ int main()
 	cout << "At any time you may type Exit to exit." << endl;
 	//allows the user to leave
 	
-	cin >> selection;	//the user gives us a string and we parse that string for Exit or a filename
-	parseExit(selection);
-	
-	if (selection.compare("Help") || selection.compare("help")){	//user wishes to learn how to play
-		//this needs to go in its own function later
-		cout << "Extensive instructions on how to play a nonogram go here" << endl;
-		
-		cout << "Please specify the file you wish to play." << endl;
-		cin >> selection;
+	while (menuFlag == 0){			//we stay in this loop to check what the user's input is
+		cin >> selection;		//the user gives us a string and we parse that string for Exit, Help, or a filename
+		parseString();
 	}
-	parseExit(selection);
 	
-	cout << endl << "Okay! Here goes..." << endl;
+	cout << endl << "Okay! Here goes..." << endl;		//we are now ready to attempt to load files
 	
-	//if (selection == 1)	//a placeholder for a better puzzle selection system.
 	dataFile.open("samplePuzzle.txt");		//this line will be our junit test
 	//dataFile.open(selection);			//we will be using this line later
 	
