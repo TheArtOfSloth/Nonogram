@@ -6,7 +6,7 @@
 using namespace std;
 
 string messedUp;
-int selection;
+string selection;
 int temp1;														//for holding row number for selection and changing
 int temp2;														//for holding column number for selection and changing
 string buf;														//holds a line of data from the file
@@ -131,30 +131,60 @@ bool isSolve(puzzle x, game y)
 	return true;
 };
 
+int parseExit(string selection)
+{
+	if (selection.compare("Exit") || selection.compare("exit")){	//user wishes to leave
+		cout << "Goodbye!" << endl;
+		exit();
+	}
+	return 0;
+}
+
 int main()
 {
 	puzzl gam;
-	cout << "Please select a number between 1 and 1: ";		//picking a puzzle. Only 1 exists so far.
-	cin >> selection;										//the int selection of a puzzle
+	cout << "Welcome to our nonogram project!" << endl;
+	cout << "If you would like to read the instructions on how to play a nonogram, please type Help." << endl;
+	//Tarin here, I'm starting work on our main menu that our user uses to either ask for instructions or load a puzzle
+	cout << "If you would like to start a puzzle, please specify the filename of the puzzle you would like to play." << endl;
+	//picking a puzzle. Only 1 exists so far.
+	cout << "At any time you may type Exit to exit." << endl;
+	//allows the user to leave
+	
+	cin >> selection;	//the user gives us a string and we parse that string for Exit or a filename
+	parseExit(selection);
+	
+	if (selection.compare("Help") || selection.compare("help")){	//user wishes to learn how to play
+		//this needs to go in its own function later
+		cout << "Extensive instructions on how to play a nonogram go here" << endl;
+		
+		cout << "Please specify the file you wish to play." << endl;
+		cin >> selection;
+	}
+	parseExit(selection);
+	
 	cout << endl << "Okay! Here goes..." << endl;
-	if (selection == 1)										//a placeholder for a better puzzle selection system.
-		dataFile.open("samplePuzzle.txt");
-	else													//for smart alecs who didn't select 1.
+	
+	//if (selection == 1)	//a placeholder for a better puzzle selection system.
+	dataFile.open("samplePuzzle.txt");		//this line will be our junit test
+	//dataFile.open(selection);			//we will be using this line later
+	
+	if (!dataFile.isOpen())				//file failed to open
 	{
 		cout << "no. nonono. It failed. Sorry, eh?" << endl << "press something and then enter to leave. sorry again. ";
-		cin >> messedUp;									//prompt so the user can read the above text before the program terminates
+		cin >> messedUp;						//prompt so the user can read the above text before the program terminates
 		return 0;
 	};											
-	dataFile.open("samplePuzzle.txt");						//open the file
+	//dataFile.open("samplePuzzle.txt");					//open the file
 	
-	while(dataFile.good())									//loop to read file and create solution grid
+	while(dataFile.good())							//loop to read file and create solution grid
 	{
 		getline(dataFile, buf);
 		temp1=atoi(buf.c_str[0]);
 		temp2=atoi(buf.c_str[1]);
 		gam.setSol(temp1, temp2);
 	};
-	dataFile.close();										//close the file
+	dataFile.close();							//close the file
 
 	return 0;
 }
