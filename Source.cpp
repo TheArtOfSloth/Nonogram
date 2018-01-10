@@ -149,8 +149,18 @@ int parseString(string selection){
 
 void parseHelp()
 {
-	cout << "Extensive instructions on how to play a nonogram go here" << endl;
-	cout << "Please specify the file you wish to play." << endl;
+	cout << "Nonograms are picture logic puzzles, where you are given a list of numbers and within the rules of interpreting those numbers, carve out a picture inside a grid." << endl;
+	//this is where I would have an example grid
+	cout << "Along the topside and along the leftside of the grid are lists of numbers. The lists are the number of filled-in squares (aka black blocks) that reside within that row or column." << endl;
+	cout << "Your job is to fill in squares on the grid, such that the number of squares satisfy the number of needed blocks in each row and column simultaneously" << endl;
+	//would love to have sample pictures
+	cout << "If a row or column is given two or more numbers, the number of blocks will be in groups. A group of blocks specifies the number of adjacent blocks. There will be at least one empty block between each group." << endl;
+	cout << "For example, if row three shows that there are '3 2 1' blocks, then somewhere in that row there will be three adjacent black blocks. Then there will be at least one empty white spaces, followed by two more adjacent black blocks, followed by some number of white spaces, then a single black block" << endl;
+	//sample picture goes here
+	cout << "The puzzle will automatically detect when your puzzle is completed. Have fun!" << endl;
+	
+	//whew
+	cout << "Please specify the file you wish to play, or Exit to exit." << endl;
 }
 
 int parseExit()
@@ -178,7 +188,7 @@ int main()
 	
 	cout << endl << "Okay! Here goes..." << endl;		//we are now ready to attempt to load files
 	
-	dataFile.open("samplePuzzle.txt");		//this line will be our junit test
+	dataFile.open("samplePuzzle.txt");		//this line will be our junit test. Open the file
 	//dataFile.open(selection);			//we will be using this line later
 	
 	if (!dataFile.isOpen())				//file failed to open
@@ -187,7 +197,6 @@ int main()
 		cin >> messedUp;						//prompt so the user can read the above text before the program terminates
 		return 0;
 	};											
-	//dataFile.open("samplePuzzle.txt");					//open the file
 	
 	while(dataFile.good())							//loop to read file and create solution grid
 	{
@@ -196,6 +205,10 @@ int main()
 		temp2=atoi(buf.c_str[1]);
 		gam.setSol(temp1, temp2);
 	};
+	
+	//if(puzzle is solved){
+		//cout << "Congratulations! You have completed the puzzle!" << endl;
+	//}
 	dataFile.close();							//close the file
 
 	return 0;
