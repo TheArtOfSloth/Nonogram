@@ -60,7 +60,8 @@ int main()
 		//picking a puzzle. Only 1 exists so far.
 		cout << "At any time you may type Exit to exit." << endl;
 		//allows the user to leave
-	
+		
+		menuFlag = 0;
 		while (menuFlag == 0){			//we stay in this loop to check what the user's input is
 			cin >> selection;		//the user gives us a string and we parse that string for Exit, Help, or a filename
 			parseString();
