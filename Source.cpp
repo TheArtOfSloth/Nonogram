@@ -69,14 +69,23 @@ int main()
 	
 		cout << endl << "Okay! Here goes..." << endl;		//we are now ready to attempt to load files
 		
-		//if(puzzle is solved){
-			//cout << "Congratulations! You have completed the puzzle!" << endl;
-			//cout << "Would you like to try another?" << endl;
-			//here we would ask if the user wants to load another puzzle. For this submission the answer will be no
-			//since we're not loading another puzzle yet, exit the loop and program
-		gameRunning = 0;
-		//}
+		//here goes code for actually looping and running the game
+		//load up the puzzle file here
+		//if and only if the puzzle loads properly, run this statement:
+		puzzleLoaded = 1;
 		
+		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
+			//load a game class here, to actually start running the game
+			if(isSolved == TRUE){
+				cout << "Congratulations! You have completed the puzzle!" << endl;
+				//cout << "Would you like to try another?" << endl;
+				//here we would ask if the user wants to load another puzzle. For this submission the answer will be no
+				//since we're not loading another puzzle yet, exit the loop and program
+				gameRunning = 0;
+				//regardless, we now end the puzzleLoaded loop
+				puzzleLoaded = 0;
+			}
+		}
 	}
 	return 0;
 }
