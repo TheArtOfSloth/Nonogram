@@ -1,10 +1,11 @@
+//function one
 load puzzle file
 xsize = first number of file
 ysize = second number of file
 
-//i already have a function that builds the list of hints along the top and left sides
+//we already have a function that builds the list of hints along the top and left sides
 //rowKey and collumnKey
-//i just need to print those out
+//i just need to print those out. Plus a grid of whitespace
 
 //step one is to create a buffer of whitespace in the top left corner
 //This will also tell me how tall to make the tallest column and how wide to make the widest row
@@ -23,11 +24,13 @@ for(itorY < ysize)
 //now, biggestRow and biggestColumn are values, and we put a number of whitespace characters equal to those values
 
 for (i < ysize){
-  
   for (j < xsize){
-    if (i < biggestColumn AND j < biggestRow) print " " //we're still in the corner
+    if (i < biggestColumn AND j < biggestRow) print " "                        //we're still in the corner
     if (i < biggestColumn AND j > biggestRow) print columnKey[j-biggestRow][i] //we're in in the column hints
     if (i > biggestColumn AND j < biggestRow) print rowKey[i-biggestColumn][j] //we're in the row hints
-    if (i > biggestColumn AND j > biggestRow) print selection[j-biggestRow][i-biggestColumn] // we're in the grid playfield
+    if (i > biggestColumn AND j > biggestRow){                                 //we're in the grid playfield
+      if (selection[j-biggestRow][i-biggestColumn] == TRUE) print "X"
+      else print " "
+    }
   }
 }
