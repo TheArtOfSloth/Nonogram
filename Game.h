@@ -5,7 +5,7 @@
 #include "Puzzle.h"
 using namespace std;
 
-class game
+class Game
 {
 public:
     Game() {delete this;}
