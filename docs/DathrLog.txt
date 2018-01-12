@@ -3,3 +3,5 @@ DathrLog
 Name: Daniel Klapstein
 Logging: CS4310 "nonogram" project.
 
+5-Jan-2018:
+group made.
