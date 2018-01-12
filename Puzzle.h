@@ -30,7 +30,7 @@ Puzzle::Puzzle(string filename)
 {
 	ifstream file;
 	file.open(filename);
-	if (!file.good()) delete this;
+	if (!file.good()) file.open("sample.txt");
 	else
 	{
 		file >> numRows;
