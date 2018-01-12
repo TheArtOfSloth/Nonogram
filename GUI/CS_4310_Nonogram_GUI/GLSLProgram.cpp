@@ -5,29 +5,11 @@
 #include <vector>
 
 
-GLSLProgram::GLSLProgram() : 
-	//This is an initialization list. Provides some optimizations.
-	_numAttributes(0),
-	_programID(0), 
-	_vertexShaderID(0), 
-	_fragmentShaderID(0)
-{
-
-}
-
-GLSLProgram::~GLSLProgram()
-{
-
-}
-
-GLuint GLSLProgram::getUniformLocation(const std::string &uniformName)
-{
-	GLuint loc = glGetUniformLocation(_programID, uniformName.c_str());
-	if (loc == GL_INVALID_INDEX) {
-		fatalError("Uniform " + uniformName + " not found in shader");
-		}
-	return loc;
-}
+GLSLProgram::GLSLProgram() : _numAttributes(0),
+							 _programID(0), 
+							_vertexShaderID(0), 
+							_fragmentShaderID(0)
+{ /*Initialization list*/ }
 
 void GLSLProgram::addAttribute(const std::string &attributeName)
 {
@@ -124,21 +106,4 @@ void GLSLProgram::linkShaders()
 	//Same as with potential errors, clear up the memory for re-rendering.
 	glDeleteShader(_vertexShaderID);
 	glDeleteShader(_fragmentShaderID);
-}
-
-void GLSLProgram::use()
-{
-	glUseProgram(_programID);
-	for (int i = 0; i < _numAttributes; i++)
-	{
-		glEnableVertexAttribArray(i);
-	}
-}
-void GLSLProgram::unuse()
-{
-	glUseProgram(0);
-	//Need to disable vertex array to avoid issues between some GPUs.
-	for (int i = 0; i < _numAttributes; i++) {
-		glDisableVertexAttribArray(i);
-	}
 }

@@ -10,9 +10,6 @@ private:
 	GLuint _fragmentShaderID;
 public:
 	GLSLProgram();
-	~GLSLProgram();
-
-	GLuint getUniformLocation(const std::string &uniformName);
 
 	void addAttribute(const std::string &attributeName);
 	void compileShader(const std::string &filePath,
@@ -20,8 +17,7 @@ public:
 	void compileShaders(const std::string& vertexShaderFilePath,
 		                const std::string& fragmentShaderFilePath);
 	void linkShaders();
-	void use();
-	void unuse();
+
 	
 };
 

@@ -4,36 +4,35 @@
 #include "GLSLProgram.h"
 #include "Error.h"
 
-
-Window::Window() : _isCorrect(false),
-	               _screenWidth(1024),
-                   _screenHeight(768),
-	               _window(nullptr),
-	               _gameState(GameState::PLAY)	               
+Window::Window() : _screenWidth(800),
+                   _screenHeight(600),
+     	           _window(nullptr),
+                   _gameState(GameState::PLAY)
 {/* Initialization list for GPU optimizations. */}
-
-Window::~Window() //Not sure these destructors need to be here.
-{
-}
-
-void Window::drawBoard()
-{
-	
-}
 
 void Window::drawGame()
 {
+	int row = _screenWidth;
+	int col = _screenHeight;
+	//Clear the buffer to prevent any side effects.
+	glClear(GL_COLOR_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW);
+	glColor3f(1.0, 1.0, 1.0);
+	glBegin(GL_LINES); //Open pipe to schedule the GPU instructions.
+	for (int i = 0; i < row; i++)
+	{
+		glVertex3f(-1, i * 0.1 - 1, 1);
+		glVertex3f(col, i * 0.1 + 1, 1);
+		
+	}
+	for (int j = 0; j < col; j++)
+	{
+		glVertex3f(j * 0.1 - 1, -1, 1);
+		glVertex3f(j * 0.1 + 1, row, 1);
+	}
 
-	glClearDepth(1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	_colorProgram.use();
-
-	//Generate the board.
-	drawBoard();
-
-	_colorProgram.unuse();
-
+	glEnd(); //Close the pipe
+	glFlush();   //Write the contents of the buffer out to the GPU driver.
 	SDL_GL_SwapWindow(_window);
 }
 
@@ -41,8 +40,9 @@ void Window::gameLoop()
 {
 	while (_gameState != GameState::EXIT) 
 	{
+		//Call polling loop for user events. Terminate when exit flag is raised.
 		processInput();
-
+		//Call the rendering function to cascade the window.
 		drawGame();
 	}
 }
@@ -75,26 +75,25 @@ void Window::initSystems()
 	glClearColor(0.0f,0.0f,0.0f,1.0f);
 	
 	initShaders();
-
 }
 
 void Window::initShaders()
 {
 	//CHANGE FILEPATHS ON FINAL BUILD -> VS opens Solutions file in a private directory. Shaders path DNE there.
-	_colorProgram.compileShaders("C:\\Users\\John\\Desktop\\WIP\\Software Engineering\\GUI\\Shaders\\colorShading.vert", 
-		"C:\\Users\\John\\Desktop\\WIP\\Software Engineering\\GUI\\Shaders\\colorShading.frag");
+	_colorProgram.compileShaders("C:\\Users\\John\\Desktop\\WIP\\Software Engineering\\Nonogram\\GUI\\Shaders\\colorShading.vert", 
+		                         "C:\\Users\\John\\Desktop\\WIP\\Software Engineering\\Nonogram\\GUI\\Shaders\\colorShading.frag");
 	_colorProgram.addAttribute("vertexPos");
 	_colorProgram.linkShaders();
 }
 
 void Window::processInput() 
 {
-
 	SDL_Event input;
 
 	//Captures any user events.
 	while (SDL_PollEvent(&input)) 
 	{
+		
 		switch (input.type) 
 		{
 			case SDL_QUIT: 
@@ -102,8 +101,14 @@ void Window::processInput()
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 				_gameState = GameState::L_CLICK;
-				_isCorrect = checkTile();
-			break;
+				std::cout << "Mouse down\n";
+				break;
+			case SDL_MOUSEBUTTONUP:
+				std::cout << "Mouse up\n";
+				break;
+			case SDL_MOUSEMOTION:
+
+				break;
 		}
 	}
 }

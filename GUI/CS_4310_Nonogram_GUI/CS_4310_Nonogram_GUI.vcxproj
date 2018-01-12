@@ -120,14 +120,12 @@
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="GLSLProgram.cpp" />
     <ClCompile Include="GUI.cpp" />
-    <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detectOS.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="GLSLProgram.h" />
-    <ClInclude Include="IOManager.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
