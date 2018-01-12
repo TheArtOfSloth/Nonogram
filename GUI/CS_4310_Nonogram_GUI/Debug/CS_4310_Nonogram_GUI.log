@@ -1,0 +1,7 @@
+﻿  Window.cpp
+c:\users\john\desktop\wip\software engineering\cs_4310_nonogram_gui\cs_4310_nonogram_gui\window.cpp(113): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\john\desktop\wip\software engineering\cs_4310_nonogram_gui\cs_4310_nonogram_gui\window.cpp(114): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\john\desktop\wip\software engineering\cs_4310_nonogram_gui\cs_4310_nonogram_gui\window.cpp(115): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\john\desktop\wip\software engineering\cs_4310_nonogram_gui\cs_4310_nonogram_gui\window.cpp(116): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  CS_4310_Nonogram_GUI.vcxproj -> C:\Users\John\Desktop\WIP\Software Engineering\CS_4310_Nonogram_GUI\Debug\CS_4310_Nonogram_GUI.exe
+  CS_4310_Nonogram_GUI.vcxproj -> C:\Users\John\Desktop\WIP\Software Engineering\CS_4310_Nonogram_GUI\Debug\CS_4310_Nonogram_GUI.pdb (Partial PDB)
