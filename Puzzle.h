@@ -12,6 +12,7 @@ public:
 	Puzzle() { delete this; }
 	Puzzle(string);
 	bool** getSolution() { return solution; }
+	bool getSolutionByPoint(int, int);
 	int** getRowKey() { return rowKey; }
 	int** getColumnKey() { return columnKey; }
 	int getRows() { return numRows; }
@@ -98,6 +99,12 @@ Puzzle::Puzzle(string filename)
 			}
 		}
 	}
+}
+
+bool Puzzle::getSolutionByPoint(int row, int column)
+{
+    if (row >= numRows || column >= numColumns) return;
+    else return solution[row][column];
 }
 
 Puzzle::~Puzzle()
