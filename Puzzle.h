@@ -6,10 +6,9 @@
 #include<string>
 using namespace std;
 
-class Puzzle 
+class Puzzle
 {
 public:
-	Puzzle() { delete this; }
 	Puzzle(string);
 	bool** getSolution() { return solution; }
 	bool getSolutionByPoint(int, int);
@@ -29,15 +28,16 @@ private:
 
 Puzzle::Puzzle(string filename)
 {
-	ifstream file(filename);
-	if (!file.good()) Puzzle();
+	ifstream file;
+	file.open(filename);
+	if (!file.good()) delete this;
 	else
 	{
 		file >> numRows;
 		file >> numColumns;
 
 		// Initialize arrays
-		bool** solution = new bool*[numRows];
+		solution = new bool*[numRows];
 		for (int row = 0; row < numRows; row++)
 		{
 			solution[row] = new bool[numColumns];
@@ -52,7 +52,7 @@ Puzzle::Puzzle(string filename)
 		{
 			file >> row;
 			file >> col;
-			solution[row][col] = true;
+			solution[row - 1][col - 1] = true;
 		}
 		file.close();
 
@@ -79,23 +79,23 @@ Puzzle::Puzzle(string filename)
 		// Set keys
 		for (int i = numRows - 1; i >= 0; i--)
 		{
-			int digit = halfRows;
+			int digit = halfRows - 1;
 			for (int j = numColumns - 1; j >= 0; j--)
 			{
-				if (!solution[i][j] && rowKey[digit][i] > 0) digit--;
+				if (!solution[i][j] && rowKey[i][digit] > 0) digit--;
 				else if (!solution[i][j]); // skip
-				else rowKey[digit][i]++;
+				else rowKey[i][digit]++;
 			}
 		}
 
 		for (int i = numColumns - 1; i >= 0; i--)
 		{
-			int digit = halfColumns;
+			int digit = halfColumns - 1;
 			for (int j = numRows - 1; j >= 0; j--)
 			{
-				if (!solution[i][j] && columnKey[i][digit] > 0) digit--;
-				else if (!solution[i][j]); // skip
-				else columnKey[i][digit]++;
+				if (!solution[j][i] && columnKey[digit][i] > 0) digit--;
+				else if (!solution[j][i]); // skip
+				else columnKey[digit][i]++;
 			}
 		}
 	}
@@ -103,23 +103,19 @@ Puzzle::Puzzle(string filename)
 
 bool Puzzle::getSolutionByPoint(int row, int column)
 {
-    if (row >= numRows || column >= numColumns) return;
-    else return solution[row][column];
+	if (row >= numRows || column >= numColumns) return false;
+	else return solution[row][column];
 }
 
 Puzzle::~Puzzle()
 {
+	if (solution == nullptr) return; else;
 	for (int i = 0; i < numRows; i++)
 	{
 		delete[] solution[i];
 		delete[] rowKey[i];
 	}
-	delete[] solution;
-	delete[] rowKey;
-
 	for (int i = 0; i < halfColumns; i++) delete[] columnKey[i];
-	delete[] columnKey;
-	delete this;
 }
 
 #endif
