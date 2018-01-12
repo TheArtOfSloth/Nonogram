@@ -1,0 +1,5 @@
+DathrLog
+
+Name: Daniel Klapstein
+Logging: CS4310 "nonogram" project.
+
