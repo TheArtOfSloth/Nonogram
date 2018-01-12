@@ -34,3 +34,6 @@ for (i < ysize){
     }
   }
 }
+
+NOTE TO SELF:
+I need to add a couple lines in main function that parse's the user's X/Y commands. If the user types 2 integers, those are converted to X Y co-ordinates and, if valid, we flip the bool value of selection[x][y]
