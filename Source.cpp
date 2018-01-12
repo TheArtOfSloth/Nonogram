@@ -76,6 +76,10 @@ int main()
 		
 		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
 			//load a game class here, to actually start running the game
+			
+			//add a call to a function that polls the user for their input. Return here
+			
+			//add a call to a function that prints the grid. Return here
 			if(isSolved == TRUE){
 				cout << "Congratulations! You have completed the puzzle!" << endl;
 				//cout << "Would you like to try another?" << endl;
