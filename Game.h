@@ -43,7 +43,7 @@ bool Game::isWin()
     {
         for (int j = 0; j < puzzle.getColumns(); j++)
         {
-            if (board[]i[j] == puzzle.getSolutionByPoint(i, j));
+            if (board[i][j] == puzzle.getSolutionByPoint(i, j));
             else return false;
         }
     }
