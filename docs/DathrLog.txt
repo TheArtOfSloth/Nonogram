@@ -4,4 +4,45 @@ Name: Daniel Klapstein
 Logging: CS4310 "nonogram" project.
 
 5-Jan-2018:
-group made.
+group made. five members total.
+GitHub repository started, ArtOfSloth organization formed.
+
+6-Jan-2018:
+began writing basic code before talking to group. Reason: We would need it or an equivalent no matter what, so I did what I could to prepare for the next time I would see my group.
+designed simple struct-based data storage and file reader. wrote a sample puzzle as a text file.
+
+7-Jan-2018:
+negligible effort made to change code.
+
+8-Jan-2018:
+First time meeting with group.
+Discussed alternate code with Evan. The decision was made to use classes instead of structs, so I tried to code some classes.
+My classes were horrible.
+Began work as the group's "manager". Unpleasant to give instructions to my equals, but it got things going.
+Roles Assigned:
+-Me: Group manager, and build master. also, designing some simple text files to hold puzzles.
+-Navdip: testing and final commit
+-Evan: Puzzle.h and Game.h data storage/processing files. The things that do all the invisible work.
+-John: User-interface. What the user sees, and how they interact with the grid.
+-member "X": user menu. how the program loops between new puzzles, user moves, game exiting, etc.
+
+
+9-Jan-2018:
+Continued updating GitHub repo. No special tasks completed.
+
+10-Jan-2018:
+First mandatory group meeting.
+One of our original 5 members dropped the course.
+Tarin, exile of another clan of nerds, joined the ArtOfSloth and filled the void left by our lost member.
+tAoS held group meeting in the computer lab. I worked with Evan to help him code the headers for defining the data storage and processing class, Puzzle.h. Evan left for his next class, and agreed to design Game.h, the user-end data class.
+Tarin assumes the duties of former 'member "X"'.
+
+11-Jan-2018:
+efforts made to keep everyone on track, with moderate success.
+
+12-Jan-2018:
+Navi found errors with puzzle.h and game.h.
+Navi, Evan, and I met up and fixed several errors.
+Evan fixed the rest of puzzle.h and game.h.
+John still has some issues with the GUI. Tarin assigned to potential damage control, building a simple ASCII Interface.
+Slight communication issues, but solved with civility and efficiency... This group has SO much respect from me.
