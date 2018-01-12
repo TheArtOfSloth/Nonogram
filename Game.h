@@ -20,7 +20,7 @@ private:
 
 Game::Game(Puzzle* p)
 {
-	if (p == nullptr) delete this;
+	if (p == nullptr);
 	puzzle = p; // Set pointer
 
 	// Initialize player board
