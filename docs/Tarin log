@@ -1,0 +1,19 @@
+Tarin Smith
+
+Wednesday 11 am
+The team has graciously accepted me into their group. They've each branched off into individual stuff, with John trying to build a GUI (good luck) and the other two guys putting together a game class. I forget what the girl is doing but it's not "nothing". Anyway, that leaves me with user interface, instructions, etc. I have no reasonable estimate on how long ths will take
+
+12 noon
+So I've written some loops in main, prompting the user for what the user wants to do. Right now I'm not bothering reading puzzle files and neither is the team; I've preserved their idea of "during testing, always load the sample puzzle" and just fixed how that test case functions. Optimistic estimate, a couple more hours
+
+1 PM
+OK, i've changed how the main funtions runs, putting it into a bunch of nested loops. One loop runs so long as the user wishes to play, another loop runs so long as the user is still within the current puzzle. User input defines whether to break one loop, both loops, or just exit out entirely. Basically I've put down the widest framework and we're praying that everyone else can slot their code into other functions outside of main. They promise me that they have an inSolved variable that will break out of the inner loop as needed (at which point the user will be prompted if they want to load a new puzzle or not)
+
+Friday noon
+Oh Jesus, poor GUI guy. I'm sitting next to him as I type this, checking if he needs any help. I am tempted to make an ASCII GUI as a fallback while I wait to see if his GUI is able to update the puzzle arrays or not. We could be in this lab anywhere from another hour to another six, depending on how well this turns out
+
+friday 12:45
+They're having me build some ASCII GUIS as a fallback. No biggie. This cold take an hour or two, since we already have a function that builds lists of hints (rowKey and collumnKey)
+
+Friday 1:30
+Been writing pseudocode for the last half hour, building two or three functions I need to initialize a grid and then print out a grid. I skipped lunch and I am starving. GUI guy is, from my perspective, on standby; he will help me if his project becomes impossible. 
