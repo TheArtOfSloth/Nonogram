@@ -112,8 +112,8 @@ int main()
 		//here goes code for actually looping and running the game
 		//load up the puzzle file here
 		//if and only if the puzzle loads properly, run this statement:
-		playPuzzle = new Puzzle(selection);
-		playGame = new Game(playPuzzle);
+		Puzzle* playPuzzle = new Puzzle(selection);
+		Game* playGame = new Game(playPuzzle);
 		//assert the puzzle loaded and playPuzzle and playGame were initialized
 		
 		//then set this variable
