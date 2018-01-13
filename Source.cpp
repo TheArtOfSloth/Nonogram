@@ -23,34 +23,39 @@ void printPuzzle(puzzle playPuzzle){
 	int numRows = playPuzzle.getRows();
 	int numColumns = playPuzzle.getColumns();
 	int biggestRow = 1; int biggestColumn = 1;
+	int** thisRowKey = playPuzzle.getRowKey();
+	int** thisColumnKey = playPuzzle.getColumnKey();
 	bool** printBoard = playGame.getBoard();
 	
 	for(int itorX = 0; itorX < playPuzzle.getColumns(); itorX++){
 		//i need to find out which column has the most number of hints. Variable initialized to 1 for one hint
 		int tempBiggest = 1;
-		while(playPuzzle.columnKey[itorX].hasNext()){
+		while(thisColumnKey[itorX].hasNext()){
 			tempBiggest++;
 		}
 		if(tempBiggest > biggestColumn) biggestColumn = tempBiggest;
-  		//if (playPuzzle.columnKey[itorX].largest + 1 > biggestColumn) biggestColumn = playPuzzle.columnKey[itorX].largest + 1;
-		//this statement will be ready soon
 	}
 	for(int itorY = 0; itorY < playPuzzle.getRows(); itorY++){
 		int tempBiggest = 1;
-		while(playPuzzle.rowKey[itorY].hasNext()){
+		while(thisRowKey[itorY].hasNext()){
 			tempBiggest++;
 		}
 		if(tempBiggest > biggestRow) biggestRow = tempBiggest;
-		//if (playPuzzle.rowKey[itorY].largest + 1 > biggestRow) biggestRow = playPuzzle.rowKey[itorY].largest + 1;
-		//this statement will be ready soon
 	}
 	
 	for (i < playPuzzle.getColumns() + biggestColumn){
   		for (j < playPuzzle.getRows() + biggestRow){
-    			if (i < biggestColumn && j < biggestRow) cout << " ";					//we're still in the corner
-    			if (i < biggestColumn && j > biggestRow) cout << playPuzzle.columnKey[j-biggestRow][i]; //we're in in the column hints
-    			if (i > biggestColumn && j < biggestRow) cout << playPuzzle.rowKey[i-biggestColumn][j]; //we're in the row hints
-    			if (i > biggestColumn && j > biggestRow){						//we're in the grid playfield
+			//I am now goign to determine what we print based on where we are
+    			if (i < biggestColumn && j < biggestRow) cout << " ";				//we're still in the corner
+    			if (i < biggestColumn && j > biggestRow){					//we're in in the column hints
+				if (thisColumnKey[j-biggestRow][i] != NULL) cout << thisColumnKey[j-biggestRow][i];
+				else cout << " ";
+			}
+    			if (i > biggestColumn && j < biggestRow){					//we're in the row hints
+				if(thisRowKey[i-biggestColumn][j] != NULL) cout << thisRowKey[i-biggestColumn][j];
+				else cout << " ";
+			}
+    			if (i > biggestColumn && j > biggestRow){					//we're in the grid playfield
       				if (printBoard[j-biggestRow][i-biggestColumn] == TRUE) cout << "X";
       				else cout << " ";
     			}
