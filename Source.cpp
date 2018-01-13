@@ -17,8 +17,33 @@ int gameRunning = 1;
 puzzle playPuzzle;
 game playGame;
 
-void printPuzzle(int numRows, int numColumns){
+void printPuzzle(puzzle playPuzzle){
 	//this function will print out the nonogram in ASCII to cout
+	
+	int numRows = playPuzzle.getRows();
+	int numColumns = playPuzzle.getColumns();
+	int biggestRow = 1; int biggestColumn = 1;
+	
+	for(int itorX = 0; itorX < xsize; itorX++){
+  		//if (playPuzzle.columnKey[itorX].largest + 1 > biggestColumn) biggestColumn = playPuzzle.columnKey[itorX].largest + 1;
+		//this statement will be ready soon
+	}
+	for(int itorX = 0; itorX < xsize; itorX++){
+		//if (playPuzzle.rowKey[itorY].largest + 1 > biggestRow) biggestRow = playPuzzle.rowKey[itorY].largest + 1;
+		//this statement will be ready soon
+	}
+	
+	for (i < ysize){
+  		for (j < xsize){
+    			if (i < biggestColumn AND j < biggestRow) cout << " ";					 //we're still in the corner
+    			if (i < biggestColumn AND j > biggestRow) cout << playPuzzle.columnKey[j-biggestRow][i]; //we're in in the column hints
+    			if (i > biggestColumn AND j < biggestRow) cout << playPuzzle.rowKey[i-biggestColumn][j]; //we're in the row hints
+    			if (i > biggestColumn AND j > biggestRow){						 //we're in the grid playfield
+      				if (selection[j-biggestRow][i-biggestColumn] == TRUE) cout << "X";
+      				else cout << " ";
+    			}
+			cout << endl;
+  	}
 }
 
 int parseString(string selection){
@@ -93,7 +118,7 @@ int main()
 		
 		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
 			//print the puzzle
-			printPuzzle(playPuzzle.numRows, playPuzzle.numColumns);
+			printPuzzle(playPuzzle);
 			
 			//add a call to a function that polls the user for their input. Return here
 			cin >> selection;
