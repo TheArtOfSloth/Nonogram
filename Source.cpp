@@ -17,7 +17,7 @@ int gameRunning = 1;
 puzzle playPuzzle;
 game playGame;
 
-void printPuzzle(){
+void printPuzzle(int numRows, int numColumns){
 	//this function will print out the nonogram in ASCII to cout
 }
 
@@ -85,14 +85,15 @@ int main()
 		//here goes code for actually looping and running the game
 		//load up the puzzle file here
 		//if and only if the puzzle loads properly, run this statement:
+		playPuzzle = new Puzzle(selection);
+		//assert the puzzle loaded
 		puzzleLoaded = 1;
 		
 		//load a game class here, to actually start running the game
-		//use constructors on playPuzzle here
 		
 		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
 			//print the puzzle
-			printPuzzle()
+			printPuzzle(playPuzzle.numRows, playPuzzle.numColumns);
 			
 			//add a call to a function that polls the user for their input. Return here
 			cin >> selection;
