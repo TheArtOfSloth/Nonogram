@@ -64,6 +64,7 @@ void printPuzzle(puzzle playPuzzle, game playGame){
 			cout << endl;
 		}
   	}
+	cout << "Please type the co-ordinates of the box you would like to fill (or erase)" << endl;
 }
 
 int parseString(string selection){
