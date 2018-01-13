@@ -3,6 +3,8 @@
 #include<string>
 #include<cstring>
 #include<iomanip>
+#include"puzzle.h"
+#include"game.h"
 using namespace std;
 
 string messedUp;
@@ -11,6 +13,59 @@ string entries;									//holds user entries for the puzzle
 
 int menuFlag = 0;								//used to specify the user is ready or not to load a file
 int gameRunning = 1;
+
+int newCoordX = 0; int newCoordY = 0;						//used to store user input for 'entries'
+
+puzzle playPuzzle;
+game playGame;
+
+void printPuzzle(puzzle playPuzzle, game playGame){
+	//this function will print out the nonogram in ASCII to cout
+	
+	int numRows = playPuzzle.getRows();
+	int numColumns = playPuzzle.getColumns();
+	int biggestRow = 1; int biggestColumn = 1;
+	int** thisRowKey = playPuzzle.getRowKey();
+	int** thisColumnKey = playPuzzle.getColumnKey();
+	bool** printBoard = playGame.getBoard();
+	
+	for(int itorX = 0; itorX < playPuzzle.getColumns(); itorX++){
+		//i need to find out which column has the most number of hints. Variable initialized to 1 for one hint
+		int tempBiggest = 1;
+		while(thisColumnKey[itorX].hasNext()){
+			tempBiggest++;
+		}
+		if(tempBiggest > biggestColumn) biggestColumn = tempBiggest;
+	}
+	for(int itorY = 0; itorY < playPuzzle.getRows(); itorY++){
+		int tempBiggest = 1;
+		while(thisRowKey[itorY].hasNext()){
+			tempBiggest++;
+		}
+		if(tempBiggest > biggestRow) biggestRow = tempBiggest;
+	}
+	
+	for (i < playPuzzle.getColumns() + biggestColumn){
+  		for (j < playPuzzle.getRows() + biggestRow){
+			//I am now goign to determine what we print based on where we are
+    			if (i < biggestColumn && j < biggestRow) cout << " ";				//we're still in the corner
+    			if (i < biggestColumn && j > biggestRow){					//we're in in the column hints
+				if (thisColumnKey[j-biggestRow][i] != NULL) cout << thisColumnKey[j-biggestRow][i];
+				else cout << " ";
+			}
+    			if (i > biggestColumn && j < biggestRow){					//we're in the row hints
+				if(thisRowKey[i-biggestColumn][j] != NULL) cout << thisRowKey[i-biggestColumn][j];
+				else cout << " ";
+			}
+    			if (i > biggestColumn && j > biggestRow){					//we're in the grid playfield
+      				if (printBoard[j-biggestRow][i-biggestColumn] == TRUE) cout << "X";
+      				else cout << " ";
+    			}
+			cout << endl;
+		}
+  	}
+	cout << "Please type the co-ordinates of the box you would like to fill (or erase)" << endl;
+}
 
 int parseString(string selection){
 	if (selection.compare("Exit") || selection.compare("exit")){		//user wishes to leave
@@ -25,6 +80,10 @@ int parseString(string selection){
 	}
 	return 0;		
 	}
+}
+
+int* parseCoOrds(puzzle playPuzzle, int newX, newY){
+	playPuzzle.move(newX, newY);
 }
 
 void parseHelp()
@@ -72,14 +131,28 @@ int main()
 		//here goes code for actually looping and running the game
 		//load up the puzzle file here
 		//if and only if the puzzle loads properly, run this statement:
+		Puzzle* playPuzzle = new Puzzle(selection);
+		Game* playGame = new Game(playPuzzle);
+		//assert the puzzle loaded and playPuzzle and playGame were initialized
+		
+		//then set this variable
 		puzzleLoaded = 1;
 		
+		//load a game class here, to actually start running the game
+		
 		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
-			//load a game class here, to actually start running the game
+			//print the puzzle
+			printPuzzle(playPuzzle, playGame);
 			
 			//add a call to a function that polls the user for their input. Return here
+			cout << "Please enter a row." << endl;
+			cin >> newCoordX;
+			cout << "Please enter a column." << endl;
+			cin >> newCoordY;
+			newCoOrds = parseCoOrds(playPuzzle, newCoordX, newCoordY);
 			
-			//add a call to a function that prints the grid. Return here
+			//check if the puzzle is solved
+			if(playPuzzle.isWin()) isSolved == TRUE;
 			if(isSolved == TRUE){
 				cout << "Congratulations! You have completed the puzzle!" << endl;
 				//cout << "Would you like to try another?" << endl;
@@ -92,4 +165,4 @@ int main()
 		}
 	}
 	return 0;
-}
+} 
