@@ -109,7 +109,6 @@ bool Puzzle::getSolutionByPoint(int row, int column)
 
 Puzzle::~Puzzle()
 {
-	if (solution == nullptr) return; else;
 	for (int i = 0; i < numRows; i++)
 	{
 		delete[] solution[i];
