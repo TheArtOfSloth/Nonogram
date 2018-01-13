@@ -44,6 +44,7 @@ void printPuzzle(puzzle playPuzzle){
       				else cout << " ";
     			}
 			cout << endl;
+		}
   	}
 }
 
