@@ -20,3 +20,6 @@ Been writing pseudocode for the last half hour, building two or three functions 
 
 1:45
 John informs we we're sticking to ASCII GUI for today, his GUI won't be ready yet. Now we need to translate my notes to cpp code and add some functions to main. Praying to God on this one. I'm going to spend the next 90 minutes getting home, then actually working
+
+4:00
+I'm finally home. I'm slowly but surely plugging away at how I want these functions to work. I've loaded game.h and puzzle.h into source.cpp and I'm integrating function calls into main
