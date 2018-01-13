@@ -3,8 +3,8 @@
 #include<string>
 #include<cstring>
 #include<iomanip>
-#include<puzzle.h>
-#include<game.h>
+#include"puzzle.h"
+#include"game.h"
 using namespace std;
 
 string messedUp;
