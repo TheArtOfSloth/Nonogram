@@ -12,6 +12,10 @@ string entries;									//holds user entries for the puzzle
 int menuFlag = 0;								//used to specify the user is ready or not to load a file
 int gameRunning = 1;
 
+void printPuzzle(){
+	//this function will print out the nonogram in ASCII to cout
+}
+
 int parseString(string selection){
 	if (selection.compare("Exit") || selection.compare("exit")){		//user wishes to leave
 		parseExit();
@@ -25,6 +29,10 @@ int parseString(string selection){
 	}
 	return 0;		
 	}
+}
+
+void parseCoOrds(string selection){
+	//this function will take the user's command from cin and turn it into two integers
 }
 
 void parseHelp()
@@ -74,10 +82,15 @@ int main()
 		//if and only if the puzzle loads properly, run this statement:
 		puzzleLoaded = 1;
 		
+		//load a game class here, to actually start running the game
+		
 		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
-			//load a game class here, to actually start running the game
+			//print the puzzle
+			printPuzzle()
 			
 			//add a call to a function that polls the user for their input. Return here
+			cin >> selection;
+			parseCoOrds(selection);
 			
 			//add a call to a function that prints the grid. Return here
 			if(isSolved == TRUE){
@@ -92,4 +105,4 @@ int main()
 		}
 	}
 	return 0;
-} pootis
+} 
