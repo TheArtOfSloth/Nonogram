@@ -23,6 +23,7 @@ void printPuzzle(puzzle playPuzzle){
 	int numRows = playPuzzle.getRows();
 	int numColumns = playPuzzle.getColumns();
 	int biggestRow = 1; int biggestColumn = 1;
+	bool** printBoard = playGame.getBoard();
 	
 	for(int itorX = 0; itorX < xsize; itorX++){
   		//if (playPuzzle.columnKey[itorX].largest + 1 > biggestColumn) biggestColumn = playPuzzle.columnKey[itorX].largest + 1;
@@ -39,7 +40,7 @@ void printPuzzle(puzzle playPuzzle){
     			if (i < biggestColumn AND j > biggestRow) cout << playPuzzle.columnKey[j-biggestRow][i]; //we're in in the column hints
     			if (i > biggestColumn AND j < biggestRow) cout << playPuzzle.rowKey[i-biggestColumn][j]; //we're in the row hints
     			if (i > biggestColumn AND j > biggestRow){						 //we're in the grid playfield
-      				if (selection[j-biggestRow][i-biggestColumn] == TRUE) cout << "X";
+      				if (printBoard[j-biggestRow][i-biggestColumn] == TRUE) cout << "X";
       				else cout << " ";
     			}
 			cout << endl;
