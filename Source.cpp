@@ -112,7 +112,10 @@ int main()
 		//load up the puzzle file here
 		//if and only if the puzzle loads properly, run this statement:
 		playPuzzle = new Puzzle(selection);
-		//assert the puzzle loaded
+		playGame = new Game(playPuzzle);
+		//assert the puzzle loaded and playPuzzle and playGame were initialized
+		
+		//then set this variable
 		puzzleLoaded = 1;
 		
 		//load a game class here, to actually start running the game
