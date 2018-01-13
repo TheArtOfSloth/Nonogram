@@ -82,8 +82,8 @@ int parseString(string selection){
 	}
 }
 
-int* parseCoOrds(int newX, newY){
-	//push these new values into the entries
+int* parseCoOrds(game playGame, int newX, newY){
+	playGame.move(newX, newY);
 }
 
 void parseHelp()
@@ -149,9 +149,10 @@ int main()
 			cin >> newCoordX;
 			cout << "Please enter a column." << endl;
 			cin >> newCoordY;
-			newCoOrds = parseCoOrds(newCoordX, newCoordY);
+			newCoOrds = parseCoOrds(playGame, newCoordX, newCoordY);
 			
-			//add a call to a function that prints the grid. Return here
+			//check if the puzzle is solved
+			if(playGame.isWin()) isSolved == TRUE;
 			if(isSolved == TRUE){
 				cout << "Congratulations! You have completed the puzzle!" << endl;
 				//cout << "Would you like to try another?" << endl;
