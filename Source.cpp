@@ -82,8 +82,8 @@ int parseString(string selection){
 	}
 }
 
-int* parseCoOrds(game playGame, int newX, newY){
-	playGame.move(newX, newY);
+int* parseCoOrds(puzzle playPuzzle, int newX, newY){
+	playPuzzle.move(newX, newY);
 }
 
 void parseHelp()
@@ -149,10 +149,10 @@ int main()
 			cin >> newCoordX;
 			cout << "Please enter a column." << endl;
 			cin >> newCoordY;
-			newCoOrds = parseCoOrds(playGame, newCoordX, newCoordY);
+			newCoOrds = parseCoOrds(playPuzzle, newCoordX, newCoordY);
 			
 			//check if the puzzle is solved
-			if(playGame.isWin()) isSolved == TRUE;
+			if(playPuzzle.isWin()) isSolved == TRUE;
 			if(isSolved == TRUE){
 				cout << "Congratulations! You have completed the puzzle!" << endl;
 				//cout << "Would you like to try another?" << endl;
