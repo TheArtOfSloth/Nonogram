@@ -14,10 +14,12 @@ string entries;									//holds user entries for the puzzle
 int menuFlag = 0;								//used to specify the user is ready or not to load a file
 int gameRunning = 1;
 
+int* newCoOrds;									//used to store user input for 'entries'
+
 puzzle playPuzzle;
 game playGame;
 
-void printPuzzle(puzzle playPuzzle){
+void printPuzzle(puzzle playPuzzle, game playGame){
 	//this function will print out the nonogram in ASCII to cout
 	
 	int numRows = playPuzzle.getRows();
@@ -79,8 +81,14 @@ int parseString(string selection){
 	}
 }
 
-void parseCoOrds(string selection){
+int* parseCoOrds(string selection){
 	//this function will take the user's command from cin and turn it into two integers
+	//int* returnVar;
+	//int intOne; int intTwo;
+	//selection >> intOne;
+	//selection >> intTwo;
+	
+	//if (intOne
 }
 
 void parseHelp()
@@ -139,11 +147,11 @@ int main()
 		
 		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
 			//print the puzzle
-			printPuzzle(playPuzzle);
+			printPuzzle(playPuzzle, playGame);
 			
 			//add a call to a function that polls the user for their input. Return here
 			cin >> selection;
-			parseCoOrds(selection);
+			newCoOrds = parseCoOrds(selection);
 			
 			//add a call to a function that prints the grid. Return here
 			if(isSolved == TRUE){
