@@ -3,6 +3,8 @@
 #include<string>
 #include<cstring>
 #include<iomanip>
+#include<puzzle.h>
+#include<game.h>
 using namespace std;
 
 string messedUp;
@@ -11,6 +13,9 @@ string entries;									//holds user entries for the puzzle
 
 int menuFlag = 0;								//used to specify the user is ready or not to load a file
 int gameRunning = 1;
+
+puzzle playPuzzle;
+game playGame;
 
 void printPuzzle(){
 	//this function will print out the nonogram in ASCII to cout
@@ -83,6 +88,7 @@ int main()
 		puzzleLoaded = 1;
 		
 		//load a game class here, to actually start running the game
+		//use constructors on playPuzzle here
 		
 		while(puzzleLoaded == 1){	//this loop will be something that checks after every move
 			//print the puzzle
