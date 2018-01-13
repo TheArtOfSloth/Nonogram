@@ -14,7 +14,7 @@ string entries;									//holds user entries for the puzzle
 int menuFlag = 0;								//used to specify the user is ready or not to load a file
 int gameRunning = 1;
 
-int* newCoOrds;									//used to store user input for 'entries'
+int newCoordX = 0; int newCoordY = 0;						//used to store user input for 'entries'
 
 puzzle playPuzzle;
 game playGame;
@@ -82,14 +82,8 @@ int parseString(string selection){
 	}
 }
 
-int* parseCoOrds(string selection){
-	//this function will take the user's command from cin and turn it into two integers
-	//int* returnVar;
-	//int intOne; int intTwo;
-	//selection >> intOne;
-	//selection >> intTwo;
-	
-	//if (intOne
+int* parseCoOrds(int newX, newY){
+	//push these new values into the entries
 }
 
 void parseHelp()
@@ -151,8 +145,11 @@ int main()
 			printPuzzle(playPuzzle, playGame);
 			
 			//add a call to a function that polls the user for their input. Return here
-			cin >> selection;
-			newCoOrds = parseCoOrds(selection);
+			cout << "Please enter a row." << endl;
+			cin >> newCoordX;
+			cout << "Please enter a column." << endl;
+			cin >> newCoordY;
+			newCoOrds = parseCoOrds(newCoordX, newCoordY);
 			
 			//add a call to a function that prints the grid. Return here
 			if(isSolved == TRUE){
